@@ -105,7 +105,7 @@
 	}
 	
 	\begin{centering}
-				
+		
 		\huge Orientación de Proyecto \\[2mm]
 		
 		\small Bases de Datos\\
@@ -126,19 +126,23 @@
 	
 	\section*{Materiales provistos}
 	
-	Para el desarrollo del proyecto se le provee de los siguientes recursos:
+	Para el desarrollo del proyecto se le provee de los siguientes recursos disponibles:
 	
 	\begin{itemize}
-		\item \textbf{Imagen Docker}: Una imagen de Docker con la base de datos que la empresa cuenta. Esta base de datos se encuentra vacía debido a problemas de seguridad actuales.
+		\item \textbf{Configuración Docker}: Archivo \texttt{docker-compose.yml} para desplegar un contenedor MySQL con la base de datos GreenScape.
 		
-		\item \textbf{Documento de orientación}: El presente documento con los requerimientos y las tareas a desarrollar en el plazo máximo definido.
+		\item \textbf{Script de inicialización}: Archivo \texttt{init.sql} con datos iniciales.
 		
-		\item \textbf{Conjuntos de datos}: A mitad del período académico se brindará un fichero con conjuntos de datos que podrán utilizarse para poblar la base de datos, una vez que se complete el proceso de limpieza y anonimización de los datos sensibles de la empresa.
+		\item \textbf{Documento de orientación}: El presente documento (\texttt{guidelines.tex}) con los requerimientos y las tareas a desarrollar en el plazo máximo definido.
+		
+		\item \textbf{Instrucciones de uso}: Archivo \texttt{README.md} con instrucciones detalladas para la instalación, configuración y conexión a la base de datos desde diferentes entornos.
 	\end{itemize}
 	
 	\section*{Tareas}
 	
 	\begin{enumerate}
+		\item Realice un \textbf{fork} del repositorio del proyecto disponible en \url{https://github.com/Project-Orientations/2526-cd-bd-project-setup-green_scape}. Este repositorio será la base de su trabajo y deberá contener todo el código y documentación desarrollada durante el proyecto. Asegúrese de mantener su repositorio actualizado con sus avances.
+		
 		\item A partir de la base de datos proporcionada, elabore un \textbf{modelo entidad-relación extendido (MERX)} que le permita comprender conceptualmente el escenario planteado. 
 		Puede utilizar cualquier herramienta para su construcción; sin embargo, se recomienda emplear 
 		\href{https://app.diagrams.net/?src=about}{diagrams.net} o 
@@ -147,78 +151,78 @@
 		\item Escribir código MySQL que responda a los siguientes ejercicios:
 		
 		\begin{enumerate}
-            \item \textbf{Listar todos los productos disponibles}: Muestra todos los productos registrados, incluyendo sus detalles.
-        
-            \item \textbf{Contar las reacciones por publicación}: Calcula el número total de reacciones recibidas por cada publicación, incluyendo información sobre la publicación y su autor.
-        
-            \item \textbf{Tipos de plantas más gustadas}: Lista los tres tipos de plantas que han recibido la mayor cantidad de reacciones positivas.
-        
-            \item \textbf{Usuarios activos en contribuciones y reacciones}: Determina la actividad de los usuarios mostrando, para cada uno, su información personal y la última fecha (dentro de los últimos seis meses) en que realizó una contribución o reaccionó a una publicación. Si el usuario no presenta actividad reciente, la fecha debe mostrarse como \texttt{NULL}.
-        
-            \item \textbf{Publicaciones más populares considerando las reacciones}: Identifica las publicaciones que presentan una mayor cantidad de reacciones positivas que negativas, incluyendo sus detalles y el número total de reacciones.
-        
-            \item \textbf{Contribuciones constantes}: Muestra todas las plantas que han recibido contribuciones en dos meses consecutivos.
-        
-            \item \textbf{Promedio de actividad}: Determina el promedio de actividad mensual de los diez usuarios más activos en agregar contenido multimedia a sus publicaciones durante el último año (promedio de videos/fotos agregados por mes).
-        
-            \item \textbf{Distribución de edades}: Analiza la distribución de los usuarios por rangos de edad de diez años (por ejemplo: 11–20, 21–30, 31–40, 41–50, ...). Devuelve la cantidad de usuarios y el por ciento de edad por categoría.
-        
-            \item \textbf{Productos sin incremento en ventas mensuales}: Identifica los productos que no han mostrado un incremento en sus ventas mes a mes durante el último año.
-        
-            \item \textbf{Tendencias de contribución según el clima}: Examina cómo varían las contribuciones de acuerdo con el tipo de clima, identificando la planta más popular en cada categoría climática.
-        
-            \item \textbf{Cambio de preferencia en categorías de plantas}: Identifica a los usuarios que han cambiado su categoría de planta más contribuida al comparar la actividad entre dos años consecutivos.
-        
-            \item \textbf{Compras contradictorias}: Destaca a los usuarios que han comprado más plantas no marcadas como “Me gusta” que plantas marcadas como tales.
-        
-            \item \textbf{Usuarios de solo texto}: Lista los usuarios que nunca han agregado contenido multimedia a sus publicaciones.
-        
-            \item \textbf{Vendedores mejor calificados}: Muestra los cinco vendedores con mejor calificación promedio, ordenados de forma descendente. De cada uno se debe incluir el total de productos vendidos, calificación promedio, nombre, correo electrónico y dirección particular.
-        
-             \item \textbf{Compradores de solo plantas}: Identifica a los usuarios cuyas compras siempre incluyen, al menos, una planta.
-             
-             \item \textbf{\emph{Trigger} de auditoría de precios}: Implemente un disparador que se active automáticamente cuando se modifique el precio de un producto en la tabla \texttt{Producto}. Este recurso debe:
-             \begin{itemize}
-             	\item Registrar en una tabla de auditoría (\texttt{Historial\_Precios}) la información del cambio: producto afectado, precio anterior, precio nuevo, fecha y hora del cambio.
-             	\item Calcular el porcentaje de cambio en el precio.
-             	\item La tabla de auditoría debe ser creada con la estructura apropiada para almacenar estos datos.
-             \end{itemize}
-             
-             \item \textbf{Procedimiento almacenado para análisis de actividad de usuario}: Cree un procedimiento almacenado llamado \texttt{sp\_analisis\_usuario} que reciba como parámetros:
-             \begin{itemize}
-             	\item \texttt{p\_id\_usuario}: ID del usuario a analizar
-             	\item \texttt{p\_fecha\_inicio}: Fecha inicial del período de análisis
-             	\item \texttt{p\_fecha\_fin}: Fecha final del período de análisis
-             \end{itemize}
-             El procedimiento debe retornar un conjunto de resultados que incluya:
-             \begin{itemize}
-             	\item Total de publicaciones realizadas en el período
-             	\item Total de reacciones dadas y recibidas
-             	\item Total de comentarios realizados
-             	\item Total de compras y monto gastado
-             	\item Total de contribuciones realizadas
-             	\item Planta más comprada y planta más contribuida
-             \end{itemize}
-             Este procedimiento debe ser invocable desde la aplicación Streamlit, permitiendo al usuario introducir los parámetros de forma interactiva y visualizar los resultados en un formato amigable.
-             
-             \item \textbf{Análisis de influencers y su impacto en ventas}: Identifique a los 5 usuarios ``\emph{influencers}'' (aquellos cuyas publicaciones generan más interacciones) y determine si existe correlación entre su actividad y las ventas de las plantas con las que interactúan. Para cada \emph{influencer}, calcule: 
-             \begin{enumerate}
+			\item \textbf{Listar todos los productos disponibles}: Muestra todos los productos registrados, incluyendo sus detalles.
+			
+			\item \textbf{Contar las reacciones por publicación}: Calcula el número total de reacciones recibidas por cada publicación, incluyendo información sobre la publicación y su autor.
+			
+			\item \textbf{Tipos de plantas más gustadas}: Lista los tres tipos de plantas que han recibido la mayor cantidad de reacciones positivas.
+			
+			\item \textbf{Usuarios activos en contribuciones y reacciones}: Determina la actividad de los usuarios mostrando, para cada uno, su información personal y la última fecha (dentro de los últimos seis meses) en que realizó una contribución o reaccionó a una publicación. Si el usuario no presenta actividad reciente, la fecha debe mostrarse como \texttt{NULL}.
+			
+			\item \textbf{Publicaciones más populares considerando las reacciones}: Identifica las publicaciones que presentan una mayor cantidad de reacciones positivas que negativas, incluyendo sus detalles y el número total de reacciones.
+			
+			\item \textbf{Contribuciones constantes}: Muestra todas las plantas que han recibido contribuciones en dos meses consecutivos.
+			
+			\item \textbf{Promedio de actividad}: Determina el promedio de actividad mensual de los diez usuarios más activos en agregar contenido multimedia a sus publicaciones durante el último año (promedio de videos/fotos agregados por mes).
+			
+			\item \textbf{Distribución de edades}: Analiza la distribución de los usuarios por rangos de edad de diez años (por ejemplo: 11–20, 21–30, 31–40, 41–50, ...). Devuelve la cantidad de usuarios y el por ciento de edad por categoría.
+			
+			\item \textbf{Productos sin incremento en ventas mensuales}: Identifica los productos que no han mostrado un incremento en sus ventas mes a mes durante el último año.
+			
+			\item \textbf{Tendencias de contribución según el clima}: Examina cómo varían las contribuciones de acuerdo con el tipo de clima, identificando la planta más popular en cada categoría climática.
+			
+			\item \textbf{Cambio de preferencia en categorías de plantas}: Identifica a los usuarios que han cambiado su categoría de planta más contribuida al comparar la actividad entre dos años consecutivos.
+			
+			\item \textbf{Compras contradictorias}: Destaca a los usuarios que han comprado más plantas no marcadas como “Me gusta” que plantas marcadas como tales.
+			
+			\item \textbf{Usuarios de solo texto}: Lista los usuarios que nunca han agregado contenido multimedia a sus publicaciones.
+			
+			\item \textbf{Vendedores mejor calificados}: Muestra los cinco vendedores con mejor calificación promedio, ordenados de forma descendente. De cada uno se debe incluir el total de productos vendidos, calificación promedio, nombre, correo electrónico y dirección particular.
+			
+			\item \textbf{Compradores de solo plantas}: Identifica a los usuarios cuyas compras siempre incluyen, al menos, una planta.
+			
+			\item \textbf{\emph{Trigger} de auditoría de precios}: Implemente un disparador que se active automáticamente cuando se modifique el precio de un producto en la tabla \texttt{Producto}. Este recurso debe:
+			\begin{itemize}
+				\item Registrar en una tabla de auditoría (\texttt{Historial\_Precios}) la información del cambio: producto afectado, precio anterior, precio nuevo, fecha y hora del cambio.
+				\item Calcular el porcentaje de cambio en el precio.
+				\item La tabla de auditoría debe ser creada con la estructura apropiada para almacenar estos datos.
+			\end{itemize}
+			
+			\item \textbf{Procedimiento almacenado para análisis de actividad de usuario}: Cree un procedimiento almacenado llamado \texttt{sp\_analisis\_usuario} que reciba como parámetros:
+			\begin{itemize}
+				\item \texttt{p\_id\_usuario}: ID del usuario a analizar
+				\item \texttt{p\_fecha\_inicio}: Fecha inicial del período de análisis
+				\item \texttt{p\_fecha\_fin}: Fecha final del período de análisis
+			\end{itemize}
+			El procedimiento debe retornar un conjunto de resultados que incluya:
+			\begin{itemize}
+				\item Total de publicaciones realizadas en el período
+				\item Total de reacciones dadas y recibidas
+				\item Total de comentarios realizados
+				\item Total de compras y monto gastado
+				\item Total de contribuciones realizadas
+				\item Planta más comprada y planta más contribuida
+			\end{itemize}
+			Este procedimiento debe ser invocable desde la aplicación Streamlit, permitiendo al usuario introducir los parámetros de forma interactiva y visualizar los resultados en un formato amigable.
+			
+			\item \textbf{Análisis de influencers y su impacto en ventas}: Identifique a los 5 usuarios ``\emph{influencers}'' (aquellos cuyas publicaciones generan más interacciones) y determine si existe correlación entre su actividad y las ventas de las plantas con las que interactúan. Para cada \emph{influencer}, calcule: 
+			\begin{enumerate}
 				\item Su puntaje de interacciones ponderado (Me gusta=$1$, Me encanta=$2$, Me asombra=$1.5$, comentarios=$2$); 
 				\item Las plantas con las que más ha interactuado (publicaciones, contribuciones, compras); 
 				\item El incremento porcentual en ventas de esas plantas en las $2$ semanas posteriores a sus publicaciones/contribuciones versus las $2$ semanas anteriores; 
 				\item La tasa de conversión: porcentaje de usuarios que compraron plantas después de reaccionar a sus publicaciones.
-             \end{enumerate}
-             
-             \item \textbf{Detección de patrones de comportamiento anómalo en vendedores}: Identifique vendedores con patrones de venta sospechosos mediante el análisis de: 
-             \begin{enumerate}
-             	\item Vendedores que venden el mismo producto a precios significativamente diferentes ($>30\%$ de variación) sin justificación temporal; 
-             	\item Vendedores con productos que tienen calificaciones extremadamente polarizadas (muchos $5$ y muchos $1$, pero pocos valores intermedios); 
-             	\item  Vendedores cuyos compradores nunca o raramente han comprado otros productos en la plataforma (posible manipulación); 
-             	\item Productos vendidos por múltiples vendedores donde uno tiene un patrón de ventas muy diferente al resto. Para cada vendedor sospechoso, genere un ``índice de sospecha'' ponderado y liste las evidencias específicas detectadas.
-             \end{enumerate}
-             
-         \end{enumerate}
-        
+			\end{enumerate}
+			
+			\item \textbf{Detección de patrones de comportamiento anómalo en vendedores}: Identifique vendedores con patrones de venta sospechosos mediante el análisis de: 
+			\begin{enumerate}
+				\item Vendedores que venden el mismo producto a precios significativamente diferentes ($>30\%$ de variación) sin justificación temporal; 
+				\item Vendedores con productos que tienen calificaciones extremadamente polarizadas (muchos $5$ y muchos $1$, pero pocos valores intermedios); 
+				\item  Vendedores cuyos compradores nunca o raramente han comprado otros productos en la plataforma (posible manipulación); 
+				\item Productos vendidos por múltiples vendedores donde uno tiene un patrón de ventas muy diferente al resto. Para cada vendedor sospechoso, genere un ``índice de sospecha'' ponderado y liste las evidencias específicas detectadas.
+			\end{enumerate}
+			
+		\end{enumerate}
+		
 		
 		\item Modifique el diseño de la base de datos al permitir conversaciones en los comentarios, es decir, permitir que los usuarios puedan responder comentarios de otros usuarios creando hilos o conversaciones.
 		
@@ -329,7 +333,7 @@
 			\item Pasos para configurar la base de datos
 			\item Instrucciones para ejecutar la aplicación Streamlit
 			\item Credenciales de prueba (si aplica)
-			\item Descripción de las funcionalidades implementadas
+			\item Descripción breve de las funcionalidades implementadas
 		\end{itemize}
 		
 		\item \textbf{Documentos adicionales}: Cualquier otro material que el estudiante considere relevante para la evaluación del proyecto (diagramas, capturas de pantalla de la aplicación, análisis adicionales, pruebas, etc.).
@@ -338,6 +342,6 @@
 	\vspace{2mm}
 	
 	\textbf{Nota importante}: Asegúrese de que el repositorio incluya un archivo \texttt{.gitignore} apropiado que excluya credenciales, archivos temporales y dependencias que puedan ser reinstaladas.
-
+	
 \end{document}
 
